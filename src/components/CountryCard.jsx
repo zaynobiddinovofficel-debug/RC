@@ -10,14 +10,32 @@ function CountryCard({ country }) {
       borderRadius="md"
       overflow="hidden"
       cursor="pointer"
+      bg="white"
+      _dark={{ bg: "gray.700" }}
       onClick={() => navigate(`/country/${country.name.common}`)}
+      transition="all 0.2s"
+      _hover={{ transform: "scale(1.03)", shadow: "lg" }}
     >
-      <Image src={country.flags.png} alt={country.name.common} />
+      <Image
+        src={country.flags.png}
+        alt={country.name.common}
+        w="100%"
+        h="200px"
+        objectFit="cover"
+      />
       <Box p={4}>
-        <Text fontWeight="bold">{country.name.common}</Text>
-        <Text>Population: {country.population}</Text>
-        <Text>Region: {country.region}</Text>
-        <Text>Capital: {country.capital}</Text>
+        <Text fontWeight="bold" fontSize="lg" mb={2} _dark={{ color: "white" }}>
+          {country.name.common}
+        </Text>
+        <Text _dark={{ color: "gray.200" }}>
+          <b>Population:</b> {country.population.toLocaleString()}
+        </Text>
+        <Text _dark={{ color: "gray.200" }}>
+          <b>Region:</b> {country.region}
+        </Text>
+        <Text _dark={{ color: "gray.200" }}>
+          <b>Capital:</b> {country.capital?.[0]}
+        </Text>
       </Box>
     </Box>
   );
